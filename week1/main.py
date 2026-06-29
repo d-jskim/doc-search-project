@@ -62,6 +62,7 @@ def show_category_distribution():
     print(res_df)
 
 
+
     ## 문2) 카테고리별 평균 단어 수 (딕셔너리 활용)
     word_cnt_dict = {}
     for cat in cat_lst:
