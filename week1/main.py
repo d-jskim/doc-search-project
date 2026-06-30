@@ -79,8 +79,47 @@ def check_missing():
 
     df = load_data(DATA_PATH)
 
-    check_df = df.isnull()
-    print(check_df)
+    column_lst = df.columns.tolist()
+    print(column_lst)
+
+    # 결측치 수(isnull()의 True 값 SUM)
+    sum_df = df.isnull().sum().to_frame("결측치 수") # True(결측치) 개수 구하기
+    # 결측치 비율
+    mean_df = df.isnull().mean().to_frame("결측치 비율")
+
+    res_df = pd.concat([sum_df, mean_df], axis=1) #결측치 수, 결측치 비율
+
+
+    for col in column_lst:
+        # 결측치 여부
+        if res_df.loc[col, "결측치 수"] != 0: res_df["결측치 여부"] = True
+        else: res_df["결측치 여부"] = False
+
+        # 심각도
+        missing_rate = res_df.loc[col, "결측치 비율"]
+        if missing_rate < 5 * 0.01: res_df.loc[col, "심각도"] = "낮음"
+        elif missing_rate >= 5 * 0.01 and missing_rate < 20 * 0.01: res_df.loc[col, "심각도"] = "주의"
+        else: res_df.loc[col, "심각도"] = "높음"
+
+    print("===== 컬럼별 결측치 존재 여부 확인 =====")
+    missing_cols = res_df[res_df["결측치 여부"] == True].index.tolist()
+    no_missing_cols = res_df[res_df["결측치 여부"] == False].index.tolist()
+    print("결측치 있는 컬럼: {missing_cols}".format(missing_cols=missing_cols))
+    print("결측치 없는 컬럼: {no_missing_cols}".format(no_missing_cols=no_missing_cols))
+
+    print("===== 컬럼별 결측치 현황 출력 =====")
+    print(res_df[["결측치 수", "결측치 비율", "심각도"]])
+
+
+
+
+
+
+
+
+
+
+
 
 
 # NumPy로 문서 길이 통계량 직접 계산/출력
