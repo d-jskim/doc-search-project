@@ -9,4 +9,4 @@
 - **통계량 계산**: NumPy로 직접 계산 통계량 및 `describe()`통계량 비교
 
 ## 비고
-- KANT LLM엔지니어 Groundwork 학습 (Week1 과제)
+- 팀스파르타 'KANT LLM엔지니어 교육' Groundwork 학습 (Week1 과제)
