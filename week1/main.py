@@ -9,7 +9,7 @@ DATA_PATH = '../data/tech_docs.csv'
 
 # 기능1 데이터 불러오기 (CSV 파일 불러와 DataFrame 반환)
 def load_data(data_path):
-    print("+++++ 기능1 - 데이터 불러오기 +++++")
+    # print("+++++ 기능1 - 데이터 불러오기 +++++")
     # file 존재 여부 확인
     file_exists_flag = os.path.exists(data_path)
     # 파일 있는 경우, DataFrame 반환
@@ -46,7 +46,7 @@ def explore_structure():
 
 # 카테고리별 문서 수 및 평균 단어수 계산/출력
 def show_category_distribution():
-
+    print("+++++ 기능3 - 카테고리 분포 확인 +++++")
     # 문서 로드
     df = load_data(DATA_PATH)
     # 카테고리 리스트
@@ -76,11 +76,9 @@ def show_category_distribution():
 
 # 컬럼별 결측치 수/비율 계산 및 심각도 출력
 def check_missing():
-
+    print("+++++ 기능4 - 결측치 현황 파악 +++++")
+    # 데이터 로드
     df = load_data(DATA_PATH)
-
-    column_lst = df.columns.tolist()
-    print(column_lst)
 
     # 결측치 수(isnull()의 True 값 SUM)
     sum_df = df.isnull().sum().to_frame("결측치 수") # True(결측치) 개수 구하기
@@ -89,12 +87,11 @@ def check_missing():
 
     res_df = pd.concat([sum_df, mean_df], axis=1) #결측치 수, 결측치 비율
 
-
+    column_lst = df.columns.tolist()
     for col in column_lst:
         # 결측치 여부
         if res_df.loc[col, "결측치 수"] != 0: res_df["결측치 여부"] = True
         else: res_df["결측치 여부"] = False
-
         # 심각도
         missing_rate = res_df.loc[col, "결측치 비율"]
         if missing_rate < 5 * 0.01: res_df.loc[col, "심각도"] = "낮음"
@@ -111,27 +108,50 @@ def check_missing():
     print(res_df[["결측치 수", "결측치 비율", "심각도"]])
 
 
+def numpy_doc_stats():
+    print("+++++ 기능5 - 통계량 계산 +++++")
+
+    raw_df = load_data(DATA_PATH)
+
+    # "content"행에 결측치 존재 -> 제거
+    df = raw_df.dropna(subset=["content"])
+    # "content" 단어 수 NumPy 배열
+    np_array = np.array(df["content"].str.split().str.len())
+    # 통계량
+    res_mean = np.mean(np_array)
+    res_std = np.std(np_array, ddof=1)
+    res_median = np.median(np_array)
+    res_min = np.min(np_array)
+    res_max = np.max(np_array)
+    res_under_50 = np_array[np_array < 50]
+
+    print("===== content 컬럼 단어 수 - 통계량(NumPy 계산) =====")
+    print("평균: ", res_mean)
+    print("표준편차: ", res_std)
+    print("중앙값: ", res_median)
+    print("최솟값: ", res_min)
+    print("최댓값: ", res_max)
+    print("50 미만 값만 추출: ", res_under_50)
 
 
+    print("===== content 컬럼 단어 수 - 통계량(describe함수) =====")
+    pd_stats = pd.Series(np_array).describe()
+    print(pd_stats)
 
-
-
-
-
-
-
-
-
-# NumPy로 문서 길이 통계량 직접 계산/출력
-# def numpy_doc_stats()
+    print("===== 통계량 비교(NumPy vs. describe()) =====")
+    stats_df = pd.DataFrame (index = ['평균','표준편차','중앙값','최솟값','최댓값']
+                             , columns = ['NumPy(직접계산)', 'Pandas(describe사용)'])
+    stats_df["NumPy(직접계산)"] = [res_mean, res_std, res_median, res_min, res_max]
+    stats_df["Pandas(describe사용)"] = pd_stats.loc[['mean', 'std', '50%', 'min', 'max']].to_list()
+    print(stats_df)
 
 # 함수 호출
 def main():
-    # load_data(DATA_PATH)
-    # explore_structure()
-    # show_category_distribution()
+    load_data(DATA_PATH)
+    explore_structure()
+    show_category_distribution()
     check_missing()
-
+    numpy_doc_stats()
 
 if __name__ == "__main__":
     main()
