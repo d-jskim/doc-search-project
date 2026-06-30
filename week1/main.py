@@ -53,46 +53,35 @@ def show_category_distribution():
     cat_lst = df["category"].unique()
 
     # ## 문1) 카테고리별 문서 수
-    cat_df = pd.DataFrame({"category": cat_lst})
     cnt_df = df["category"].value_counts().to_frame(name="문서수")
     p_df = df["category"].value_counts(normalize=True).to_frame("문서비율(%)") * 100
-
     res_df = pd.concat([cnt_df, p_df], axis=1)
     print("===== 카테고리별 문서 수 =====")
     print(res_df)
 
-
-
     ## 문2) 카테고리별 평균 단어 수 (딕셔너리 활용)
-    word_cnt_dict = {}
-    for cat in cat_lst:
-        total_word_cnt = 0
-        df_cat = df[df["category"] == cat]
-        for i in range (len(df_cat)):
-            text = df_cat["content"].iloc[i]
-            word_cnt = len(text.split())
-            total_word_cnt += word_cnt
-            avg_word_cnt = total_word_cnt / res_df.loc["Python","문서수"]
+    for i in range(len(df)):
+        df.loc[i,"word_cnt"] = len(df.loc[i,"content"].split())
 
-            word_cnt_dict[cat] = avg_word_cnt
+    word_avg_dict = {}
+    for cat in cat_lst:
+        word_avg_dict[cat] = df[df["category"] == cat]["word_cnt"].mean()
 
     print("===== 카테고리별 평균 단어 수 (딕셔너리 반복문 출력) =====")
-    for cat, avg_word_cnt in word_cnt_dict.items():
-        print("{cat} - 평균 단어 수: {word_cnt}".format(cat=cat, word_cnt=avg_word_cnt))
+    for cat, word_avg in word_avg_dict.items():
+        print("{cat} - 평균 단어 수: {word_cnt}".format(cat=cat, word_cnt=word_avg))
 
-
-
-
-    # 평균값 계산
-
-
-
-    # print("===== 카테고리별 평균 단어 수 =====")
 
 
 
 # 컬럼별 결측치 수/비율 계산 및 심각도 출력
-# def check_missing()
+def check_missing():
+
+    df = load_data(DATA_PATH)
+
+    check_df = df.isnull()
+    print(check_df)
+
 
 # NumPy로 문서 길이 통계량 직접 계산/출력
 # def numpy_doc_stats()
@@ -101,7 +90,9 @@ def show_category_distribution():
 def main():
     # load_data(DATA_PATH)
     # explore_structure()
-    show_category_distribution()
+    # show_category_distribution()
+    check_missing()
+
 
 if __name__ == "__main__":
     main()
