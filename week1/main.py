@@ -14,7 +14,7 @@ def load_data(data_path):
     file_exists_flag = os.path.exists(data_path)
     # 파일 있는 경우, DataFrame 반환
     if file_exists_flag:
-        df = pd.read_csv('../data/tech_docs.csv', encoding="utf-8-sig")
+        df = pd.read_csv(data_path, encoding="utf-8-sig")
         print("===== 데이터 로드 확인 ======")
         print("데이터 로드 완료: {row_num} x {col_num}".format(row_num=df.shape[0], col_num=df.shape[1]))
         return df
