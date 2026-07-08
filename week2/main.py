@@ -214,7 +214,7 @@ def tfidf_search(question, df, tfidf_matrix, tfidf_vectorizer, top_k) -> pd.Data
     # 모든 문서 벡터와 cosine_similarity_numpy로 유사도 계산
     # df["score"] = df["content_clean"].str.split().apply(set).apply(lambda x: x & question_set).apply(len)
 
-    df["similarity"] = df["content_clean"].apply(lambda x: cosine_similarity_numpy(x,
+    # df["similarity"] = df["content_clean"].apply(lambda x: cosine_similarity_numpy(x,
 
 
 
