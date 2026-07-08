@@ -209,16 +209,22 @@ def tfidf_search(question, df, tfidf_matrix, tfidf_vectorizer, top_k) -> pd.Data
 
     # 질문: 전처리 -> 희소 행렬 -> NumPy배열(유사도 비교 arg)
     question_clean = preprocess(question)
-    question_tfidf = tfidf_vectorizer.transform(question_clean).toarray()
+    # 문장을 리스트에 담아서 vectorizer에 입력 (vectorizer는 여러 문서 입력을 기대함. 문장 1개를 리스트에 넣어서 전달)
+    question_tfidf = tfidf_vectorizer.transform([question_clean]) # 결과: (1, 401)
 
-    # 모든 문서 벡터와 cosine_similarity_numpy로 유사도 계산
-    # df["score"] = df["content_clean"].str.split().apply(set).apply(lambda x: x & question_set).apply(len)
+    # args: tfidf_matrix - (60, 401) -> CSR 희소 행렬(Sparse Matrix) 형태, 메모리 효율 위해 0이 아닌 값들의 위치만 기억하고 압축한 상태.
+    # tfidf_matrix를 toarray()로 60행 401열로 변환
+    tfidf_array = tfidf_matrix.toarray()
+    question_array = question_tfidf.toarray().flatten() # (401,)
 
-    # df["similarity"] = df["content_clean"].apply(lambda x: cosine_similarity_numpy(x,
+    similarity_lst = []
+    for row in tfidf_array:
+        score = cosine_similarity_numpy(row, question_array)
+        similarity_lst.append(score)
 
+    df["similarity"] = similarity_lst
 
-
-
+    print(df[["title", "similarity"]])
 
 
 
