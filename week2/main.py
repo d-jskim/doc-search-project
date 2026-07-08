@@ -6,6 +6,7 @@ import numpy as np
 import sklearn
 import sys
 from pandas.io.common import file_exists
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 DATA_PATH = '../data/tech_docs.csv'
 
@@ -180,13 +181,43 @@ def keyword_search(question:str, df:pd.DataFrame, top_k:int)->pd.DataFrame:
        Returns:
            점수 높은 순으로 Top-K 문서 데이터프레임
     """
+    # 질문 전처리
+    question_clean = preprocess(question)
+    question_set = set(question_clean)
 
-    question_set = set(question.split())
     df["score"] = df["content_clean"].str.split().apply(set).apply(lambda x: x & question_set).apply(len)
 
     res_df = df.sort_values("score", ascending=False)
 
     return res_df[["doc_id", "title", "category", "score"]].head(top_k)
+
+
+def build_tfidf(df):
+    """TF-IDF 벡터 행렬 생성
+       Args: DataFrame (df: pd.DataFrame - 데이터 전처리 완료 ("content_clean" 컬럼))
+       Returns: (행렬, vectorizer)
+    """
+    # 문서를 벡터 행렬로 변환 (TF-IDF: 흔한 단어의 가중치를 낮추고 희귀하지만 중요한 단어의 가중치를 높임)
+    tfidf_vectorizer = TfidfVectorizer(max_features=5000, min_df=2, stop_words='english')
+    tfidf_matrix = tfidf_vectorizer.fit_transform(df["content_clean"])
+
+    print(f"TF-IDF 행렬 크기: {tfidf_matrix.shape}")
+
+    return tfidf_matrix, tfidf_vectorizer
+
+def tfidf_search(question, df, tfidf_matrix, tfidf_vectorizer, top_k) -> pd.DataFrame:
+
+    # 질문: 전처리 -> 희소 행렬 -> NumPy배열(유사도 비교 arg)
+    question_clean = preprocess(question)
+    question_tfidf = tfidf_vectorizer.transform(question_clean).toarray()
+
+    # 모든 문서 벡터와 cosine_similarity_numpy로 유사도 계산
+    # df["score"] = df["content_clean"].str.split().apply(set).apply(lambda x: x & question_set).apply(len)
+
+    df["similarity"] = df["content_clean"].apply(lambda x: cosine_similarity_numpy(x,
+
+
+
 
 
 
@@ -202,15 +233,27 @@ def main():
 
     # df: 전처리 완료
     raw_df = load_data(DATA_PATH)
-    df = raw_df.dropna(subset=["content"])
+    #
+    # dropna(): 결측치 행 삭제 / reset_index(): 결측치 행 삭제되면서 인덱스 중간 번호가 비는 문제 해결
+    df = raw_df.dropna(subset=["content"]).reset_index(drop=True)
     df["content_clean"] = df["content"].apply(preprocess)
 
     # 코사인 유사도 계산
     # cosine_similarity_numpy(a, b)
 
-    # 잘문과 유사한 문서 검색
-    question = "gradient descent"
-    search_df = keyword_search(question, df, 5)
+    # 질문과 유사한 문서 검색
+    # question = "gradient descent"
+    question = "python list comprehension"
+    top_k = 5
+    # search_df = keyword_search(question, df, top_k)
+
+    # TF-IDF 벡터 행렬 생성
+    tfidf_matrix, tfidf_vectorizer = build_tfidf(df)
+
+    # TF-IDF Top-k 검색
+    tfidf_search(question, df, tfidf_matrix, tfidf_vectorizer, top_k)
+
+
 
 if __name__ == "__main__":
     main()
