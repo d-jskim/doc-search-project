@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="47216839-ad75-48f2-b9ba-980061483b7e" name="변경" comment="26.07.08 - Week2 과제 진행 / build_tfidf() 함수 작성 완료 / tfidf_search() 작성 중 / keyword_search() 수정: question 전처리 코드">
+    <list default="true" id="47216839-ad75-48f2-b9ba-980061483b7e" name="변경" comment="26.07.09 - Week2 과제 진행 / tfidf_search() 에서 유사도 구함. matrix 희소 행렬을 toarry()로 변환 후 cosine_similarity_numpy()에 전달해서 유사도 점수 구함.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/week2/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/week2/main.py" afterDir="false" />
     </list>
@@ -236,7 +236,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783470584245</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="26.07.09 - Week2 과제 진행 / tfidf_search() 에서 유사도 구함. matrix 희소 행렬을 toarry()로 변환 후 cosine_similarity_numpy()에 전달해서 유사도 점수 구함.">
+      <option name="closed" value="true" />
+      <created>1783548777444</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1783548777444</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -252,6 +260,7 @@
     <MESSAGE value="26.07.07 - Week2 과제 진행 / preprocess(), cosine_similarity_numpy() 완료, keyword_search() 완료" />
     <MESSAGE value="26.07.08 - Week2 과제 진행 / build_tfidf() 함수 작성 완료 / tfidf_search() 작성 중" />
     <MESSAGE value="26.07.08 - Week2 과제 진행 / build_tfidf() 함수 작성 완료 / tfidf_search() 작성 중 / keyword_search() 수정: question 전처리 코드" />
-    <option name="LAST_COMMIT_MESSAGE" value="26.07.08 - Week2 과제 진행 / build_tfidf() 함수 작성 완료 / tfidf_search() 작성 중 / keyword_search() 수정: question 전처리 코드" />
+    <MESSAGE value="26.07.09 - Week2 과제 진행 / tfidf_search() 에서 유사도 구함. matrix 희소 행렬을 toarry()로 변환 후 cosine_similarity_numpy()에 전달해서 유사도 점수 구함." />
+    <option name="LAST_COMMIT_MESSAGE" value="26.07.09 - Week2 과제 진행 / tfidf_search() 에서 유사도 구함. matrix 희소 행렬을 toarry()로 변환 후 cosine_similarity_numpy()에 전달해서 유사도 점수 구함." />
   </component>
 </project>

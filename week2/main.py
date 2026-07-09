@@ -224,7 +224,12 @@ def tfidf_search(question, df, tfidf_matrix, tfidf_vectorizer, top_k) -> pd.Data
 
     df["similarity"] = similarity_lst
 
-    print(df[["title", "similarity"]])
+    # 상위 k개 (argsort()[::-1][:k] 사용
+    top_k_indices = np.array(similarity_lst).argsort()[::-1][:top_k]
+
+    print(df.index)
+
+    # rse_df = df.iloc[["doc_id", "title", "category", "similarity"]].iloc[top_k_indices]
 
 
 
