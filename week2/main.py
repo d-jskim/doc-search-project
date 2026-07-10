@@ -182,13 +182,14 @@ def keyword_search(question:str, df:pd.DataFrame, top_k:int)->pd.DataFrame:
            점수 높은 순으로 Top-K 문서 데이터프레임
     """
     # 질문 전처리
-    question_clean = preprocess(question)
-    question_set = set(question_clean)
+    # question_clean = preprocess(question)
+    # question_set = set(question_clean)
+    question_set = set(question.split())
 
     df["score"] = df["content_clean"].str.split().apply(set).apply(lambda x: x & question_set).apply(len)
 
     res_df = df.sort_values("score", ascending=False)
-    # print(res_df[["title", "score"]])
+    print(res_df[["title", "score"]])
 
     return res_df[["doc_id", "title", "category", "score"]].head(top_k)
 
@@ -202,8 +203,7 @@ def build_tfidf(df):
     tfidf_vectorizer = TfidfVectorizer(max_features=5000, min_df=2, stop_words='english')
     tfidf_matrix = tfidf_vectorizer.fit_transform(df["content_clean"])
 
-    print(f"TF-IDF 행렬 크기: {tfidf_matrix.shape}")
-    print(f"TF-IDF 사용 단어 수: {tfidf_matrix.shape[1]}") #인덱스 0: 전체 문서(행) 수, 인덱스1: 고유 단어(열)
+    print(f"TF-IDF 행렬 크기: {tfidf_matrix.shape} | 사용된 단어 수: {tfidf_matrix.shape[1]}") #인덱스 0: 전체 문서(행) 수, 인덱스1: 고유 단어(열)
 
     return tfidf_matrix, tfidf_vectorizer
 
@@ -247,13 +247,14 @@ def main():
     # dropna(): 결측치 행 삭제 / reset_index(): 결측치 행 삭제되면서 인덱스 중간 번호가 비는 문제 해결
     df = raw_df.dropna(subset=["content"]).reset_index(drop=True)
     df["content_clean"] = df["content"].apply(preprocess)
+    print("전처리 완료: content_clean 컬럼 생성")
 
     # 코사인 유사도 계산
     # cosine_similarity_numpy(a, b)
 
     # 질문과 유사한 문서 검색
     # question = "gradient descent"
-    question = "python list comprehension"
+    question = "how does gradient descent work in machine learning"
     top_k = 3
 
     # Baseline 검색
@@ -266,11 +267,11 @@ def main():
     tfidf_res = tfidf_search(question, df, tfidf_matrix, tfidf_vectorizer, top_k)
 
     # Baseline 검색 결과
-    print("* 질문 : ", question)
-    print("** Baseline 검색 결과")
+    print("질문 : ", question)
+    print("=== Keyword Baseline ===")
     print(baseline_res)
     # TF-IDF 검색 결과
-    print("** TF-IDF 검색 결과")
+    print("=== TF-IDF 검색 결과 ===")
     print(tfidf_res)
 
     # 결과 분석
