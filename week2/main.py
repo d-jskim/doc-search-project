@@ -188,6 +188,7 @@ def keyword_search(question:str, df:pd.DataFrame, top_k:int)->pd.DataFrame:
     df["score"] = df["content_clean"].str.split().apply(set).apply(lambda x: x & question_set).apply(len)
 
     res_df = df.sort_values("score", ascending=False)
+    # print(res_df[["title", "score"]])
 
     return res_df[["doc_id", "title", "category", "score"]].head(top_k)
 
@@ -202,6 +203,7 @@ def build_tfidf(df):
     tfidf_matrix = tfidf_vectorizer.fit_transform(df["content_clean"])
 
     print(f"TF-IDF 행렬 크기: {tfidf_matrix.shape}")
+    print(f"TF-IDF 사용 단어 수: {tfidf_matrix.shape[1]}") #인덱스 0: 전체 문서(행) 수, 인덱스1: 고유 단어(열)
 
     return tfidf_matrix, tfidf_vectorizer
 
@@ -226,12 +228,9 @@ def tfidf_search(question, df, tfidf_matrix, tfidf_vectorizer, top_k) -> pd.Data
 
     # 상위 k개 (argsort()[::-1][:k] 사용
     top_k_indices = np.array(similarity_lst).argsort()[::-1][:top_k]
+    res_df = df[["doc_id", "title", "category", "similarity"]].iloc[top_k_indices]
 
-    print(df.index)
-
-    # rse_df = df.iloc[["doc_id", "title", "category", "similarity"]].iloc[top_k_indices]
-
-
+    return res_df
 
 
 
@@ -255,16 +254,33 @@ def main():
     # 질문과 유사한 문서 검색
     # question = "gradient descent"
     question = "python list comprehension"
-    top_k = 5
-    # search_df = keyword_search(question, df, top_k)
+    top_k = 3
+
+    # Baseline 검색
+    baseline_res = keyword_search(question, df, top_k)
 
     # TF-IDF 벡터 행렬 생성
     tfidf_matrix, tfidf_vectorizer = build_tfidf(df)
 
     # TF-IDF Top-k 검색
-    tfidf_search(question, df, tfidf_matrix, tfidf_vectorizer, top_k)
+    tfidf_res = tfidf_search(question, df, tfidf_matrix, tfidf_vectorizer, top_k)
 
+    # Baseline 검색 결과
+    print("* 질문 : ", question)
+    print("** Baseline 검색 결과")
+    print(baseline_res)
+    # TF-IDF 검색 결과
+    print("** TF-IDF 검색 결과")
+    print(tfidf_res)
 
+    # 결과 분석
+    # + Baseline 검색은 "gradient", "descent"가 존재하는 문서를 검색해서 단어 교집합을 score로 구함.
+    # -> "gradient", "descent" 단어의 빈도수, 문서에서 "gradient descent"를 어느 정도의 비중으로 다루는지와 무관하게 두 단어가 존재하면 score가 2가 최댓값이 됨.
+    # -> "gradient descent"를 중요하게 다루지 않은 문서도 score 최댓값(2)일 수 있고, 이런 문서가 여러 개인 경우 Top 3 결과가 무의미함(관련 없는 문서도 상위).
+
+    # + TF-IDF 검색은 단어빈도수에 따른 가중치를 계산('the'같은 단어는 낮게, 중요한 'gradient' 단어는 높게)하여 검색어와 유사도 구함.
+    # -> 컴퓨터 관련 문서들 중에서 관련도가 높은 문서를 찾을 경우, 컴퓨터 문서에서 흔한 단어인 "algorithm"도 가중치를 낮추고 "gradient", "descent"와 관련성 있는 문서 도출 가능함.
+    # -> Baseline 검색의 score가 교집합 개수(정수)라서 문서들 간 차별화가 없었다면, smilarity는 척도는 0~1사이의 실수로 문서간 유사도 정렬(랭킹)이 가능해서 관련 높은 문서 검색 가능함
 
 if __name__ == "__main__":
     main()
