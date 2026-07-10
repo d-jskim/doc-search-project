@@ -189,7 +189,7 @@ def keyword_search(question:str, df:pd.DataFrame, top_k:int)->pd.DataFrame:
     df["score"] = df["content_clean"].str.split().apply(set).apply(lambda x: x & question_set).apply(len)
 
     res_df = df.sort_values("score", ascending=False)
-    print(res_df[["title", "score"]])
+    # print(res_df[["title", "score"]])
 
     return res_df[["doc_id", "title", "category", "score"]].head(top_k)
 
