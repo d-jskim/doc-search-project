@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="47216839-ad75-48f2-b9ba-980061483b7e" name="변경" comment="26.07.10 - Week2 과제 진행 / tfidf_search() 작성 완료 / 과제 제출 체크리스트 검토 완료 (제출 형식 추가 수정)">
+    <list default="true" id="47216839-ad75-48f2-b9ba-980061483b7e" name="변경" comment="26.07.12 - Week3 과제 완료">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,6 +47,7 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Python.main (1).executor": "Run",
     "Python.main (2).executor": "Run",
+    "Python.main (3).executor": "Run",
     "Python.main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -65,7 +66,7 @@
       <recent name="C:\Users\jskim\doc-search-project\venv" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main (2)">
+  <component name="RunManager" selected="Python.main (3)">
     <configuration name="main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="doc-search-project" />
       <option name="ENV_FILES" value="" />
@@ -110,6 +111,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="main (3)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="doc-search-project" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/week4" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/week4/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="doc-search-project" />
       <option name="ENV_FILES" value="" />
@@ -134,6 +157,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main (3)" />
         <item itemvalue="Python.main (2)" />
         <item itemvalue="Python.main (1)" />
         <item itemvalue="Python.main" />
@@ -299,7 +323,23 @@
       <option name="project" value="LOCAL" />
       <updated>1783647961837</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="26.07.12 - Week3 과제 완료">
+      <option name="closed" value="true" />
+      <created>1783837324575</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1783837324575</updated>
+    </task>
+    <task id="LOCAL-00020" summary="26.07.12 - Week3 과제 완료">
+      <option name="closed" value="true" />
+      <created>1783837468016</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1783837468016</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -319,6 +359,7 @@
     <MESSAGE value="26.07.10 - Week2 과제 진행 / tfidf_search() 상위 K개 argsort() 사용" />
     <MESSAGE value="26.07.10 - Week2 과제 진행 / tfidf_search() 작성 완료 / 과제 제출 체크리스트 검토 완료" />
     <MESSAGE value="26.07.10 - Week2 과제 진행 / tfidf_search() 작성 완료 / 과제 제출 체크리스트 검토 완료 (제출 형식 추가 수정)" />
-    <option name="LAST_COMMIT_MESSAGE" value="26.07.10 - Week2 과제 진행 / tfidf_search() 작성 완료 / 과제 제출 체크리스트 검토 완료 (제출 형식 추가 수정)" />
+    <MESSAGE value="26.07.12 - Week3 과제 완료" />
+    <option name="LAST_COMMIT_MESSAGE" value="26.07.12 - Week3 과제 완료" />
   </component>
 </project>
