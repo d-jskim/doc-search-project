@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="47216839-ad75-48f2-b9ba-980061483b7e" name="변경" comment="26.07.10 - Week2 과제 진행 / tfidf_search() 상위 K개 argsort() 사용">
+    <list default="true" id="47216839-ad75-48f2-b9ba-980061483b7e" name="변경" comment="26.07.10 - Week2 과제 진행 / tfidf_search() 작성 완료 / 과제 제출 체크리스트 검토 완료 (제출 형식 추가 수정)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week2/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/week2/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,18 +42,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.main (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/jskim/doc-search-project/data&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.main (1).executor": "Run",
+    "Python.main (2).executor": "Run",
+    "Python.main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/jskim/doc-search-project/data",
+    "settings.editor.selected.configurable": "terminal"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\jskim\doc-search-project\data" />
@@ -65,7 +65,7 @@
       <recent name="C:\Users\jskim\doc-search-project\venv" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main (1)">
+  <component name="RunManager" selected="Python.main (2)">
     <configuration name="main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="doc-search-project" />
       <option name="ENV_FILES" value="" />
@@ -80,6 +80,28 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/week2/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main (2)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="doc-search-project" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/week3" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/week3/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -112,6 +134,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main (2)" />
         <item itemvalue="Python.main (1)" />
         <item itemvalue="Python.main" />
       </list>
@@ -252,7 +275,31 @@
       <option name="project" value="LOCAL" />
       <updated>1783637083175</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="26.07.10 - Week2 과제 진행 / tfidf_search() 작성 완료 / 과제 제출 체크리스트 검토 완료">
+      <option name="closed" value="true" />
+      <created>1783647425540</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1783647425540</updated>
+    </task>
+    <task id="LOCAL-00017" summary="26.07.10 - Week2 과제 진행 / tfidf_search() 작성 완료 / 과제 제출 체크리스트 검토 완료 (제출 형식 추가 수정)">
+      <option name="closed" value="true" />
+      <created>1783647947314</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1783647947314</updated>
+    </task>
+    <task id="LOCAL-00018" summary="26.07.10 - Week2 과제 진행 / tfidf_search() 작성 완료 / 과제 제출 체크리스트 검토 완료 (제출 형식 추가 수정)">
+      <option name="closed" value="true" />
+      <created>1783647961837</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1783647961837</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -270,6 +317,8 @@
     <MESSAGE value="26.07.08 - Week2 과제 진행 / build_tfidf() 함수 작성 완료 / tfidf_search() 작성 중 / keyword_search() 수정: question 전처리 코드" />
     <MESSAGE value="26.07.09 - Week2 과제 진행 / tfidf_search() 에서 유사도 구함. matrix 희소 행렬을 toarry()로 변환 후 cosine_similarity_numpy()에 전달해서 유사도 점수 구함." />
     <MESSAGE value="26.07.10 - Week2 과제 진행 / tfidf_search() 상위 K개 argsort() 사용" />
-    <option name="LAST_COMMIT_MESSAGE" value="26.07.10 - Week2 과제 진행 / tfidf_search() 상위 K개 argsort() 사용" />
+    <MESSAGE value="26.07.10 - Week2 과제 진행 / tfidf_search() 작성 완료 / 과제 제출 체크리스트 검토 완료" />
+    <MESSAGE value="26.07.10 - Week2 과제 진행 / tfidf_search() 작성 완료 / 과제 제출 체크리스트 검토 완료 (제출 형식 추가 수정)" />
+    <option name="LAST_COMMIT_MESSAGE" value="26.07.10 - Week2 과제 진행 / tfidf_search() 작성 완료 / 과제 제출 체크리스트 검토 완료 (제출 형식 추가 수정)" />
   </component>
 </project>
